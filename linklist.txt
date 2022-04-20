@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+typedef struct nodetype
+{
+    int info;
+    struct nodetype *next;
+}node;
+ void createemptylist(node **head);
+ void traverseinorder(node *head);
+ void insertatbeginning(node **head,int item);
+ void main()
+ {
+     node *head;
+     int choice,element,after;
+     createemptylist(&head);
+     while(1)
+     {
+         printf("operation available are \n");
+         printf("1 insert at beginning \n");
+         printf("2 traverse in order \n");
+         printf("enter choice 1 or 2 \n");
+         scanf("%d",&choice);
+         switch(choice)
+         {
+          case 1: printf("\n enter element");
+                  scanf("%d",&element);
+                  insertatbeginning(&head,element);
+                  break;
+        case 2: if(head==NULL)
+               printf("\n list is empty");
+               else
+               traverseinorder(head);
+               printf("press any key to continue");
+               getch();
+               break;
+        default:exit(0);
+         }
+     }
+ }
+ void createemptylist(node **head)
+ {
+   *head=NULL;
+ }
+         void  insertatbeginning(node **head,int item)
+         {
+             node *ptr;
+             ptr=(node *)malloc(sizeof(node));
+             ptr->info=item;
+             if(*head==NULL)
+             ptr->next=NULL;
+             else
+             ptr->next=*head;
+             *head=ptr;
+         }
+         void traverseinorder(node *head)
+         {
+             while(head!=NULL)
+             {
+                 printf("\n %d",head->info);
+                 head=head->next;
+             }
+         }
